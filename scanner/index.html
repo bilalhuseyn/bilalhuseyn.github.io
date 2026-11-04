@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LegalScan scanner information</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header><p><a href="/">Quillmoor Notes</a> - <span class="note">fictional test site</span></p></header>
+<main>
+<h1>LegalScan scanner</h1>
+<p>This page describes the automated visitor "LegalScan". It is the page the scanner points to in its identification string. During this test it only visits this site, and only when the site's owner starts it.</p>
+<h2>How it identifies itself</h2>
+<p>Requests carry the token <code>LegalScan/0.1.0 (+https://bilalhuseyn.github.io/scanner/)</code> at the end of the User-Agent. The browser part of the string is the real Chromium one; nothing is hidden or disguised.</p>
+<h2>What it does</h2>
+<ul>
+<li>Opens the landing page and a few legal and information pages of the site with plain page loads, in a browser. During this test it runs from the site owner's own computer.</li>
+<li>Looks at what the pages show and which requests and cookies appear, with and without a click on the cookie banner's own buttons, if there is one.</li>
+<li>Reads robots.txt first and follows it (product token <code>LegalScan</code>).</li>
+<li>Keeps raw captures for at most 24 hours and derived observations for at most 7 days.</li>
+</ul>
+<h2>What it does not do</h2>
+<ul>
+<li>It does not submit forms, log in, register, search, buy, download files or solve challenges.</li>
+<li>It does not try to get around bot protection, blocks or robots.txt. If it is blocked, it stops and records "Could not check".</li>
+<li>It does not visit other sites, and it does not contact the site's owner.</li>
+<li>It does not judge or certify a site. Its output is a list of observations, "No signal found" and "Could not check" entries, not a verdict.</li>
+</ul>
+<h2>Contact and opt-out</h2>
+<p>To stop visits or ask a question, write to: <a href="https://github.com/bilalhuseyn/bilalhuseyn.github.io/issues">this repository's GitHub Issues page</a> (placeholder: the scanner's role mailbox goes here before any scan of a site that is not the founder's own).</p>
+</main>
+<footer><p><a href="/">Home</a> | <a href="/robots.txt">robots.txt</a></p></footer>
+</body>
+</html>

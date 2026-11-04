@@ -1,0 +1,6 @@
+# Test site for the LegalScan scanner. The scanner token is allowed; nothing is disallowed.
+User-agent: LegalScan
+Allow: /
+
+User-agent: *
+Allow: /
