@@ -1,35 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LegalScan scanner information</title>
-<link rel="stylesheet" href="/style.css">
+<meta name="description" content="What the automated visitor LegalScan is, how it identifies itself, what it does and does not do, and how to contact us or opt out.">
+<meta name="robots" content="index, nofollow">
+<style>
+  :root { --bg: #ffffff; --ink: #1a1f24; --muted: #59636e; --line: #d8dde3; --code: #f2f4f6; --link: #1f4f99; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111518; --ink: #e6eaee; --muted: #9aa5b0; --line: #2b333b; --code: #1b2228; --link: #8db4f0; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 16px 3rem; }
+  h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 .5rem; }
+  h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
+  p, li { max-width: 70ch; }
+  ul { padding-left: 1.25rem; }
+  li + li { margin-top: .35rem; }
+  code { font: .9em ui-monospace, Consolas, monospace; background: var(--code); padding: .1em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+  a { color: var(--link); }
+  .lede { color: var(--muted); }
+  .note { border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 1rem; color: var(--muted); font-size: .9rem; }
+</style>
 </head>
 <body>
-<header><p><a href="/">Quillmoor Notes</a> - <span class="note">fictional test site</span></p></header>
 <main>
-<h1>LegalScan scanner</h1>
-<p>This page describes the automated visitor "LegalScan". It is the page the scanner points to in its identification string. During this test it only visits this site, and only when the site's owner starts it.</p>
-<h2>How it identifies itself</h2>
-<p>Requests carry the token <code>LegalScan/0.1.0 (+https://bilalhuseyn.github.io/scanner/)</code> at the end of the User-Agent. The browser part of the string is the real Chromium one; nothing is hidden or disguised.</p>
-<h2>What it does</h2>
-<ul>
-<li>Opens the landing page and a few legal and information pages of the site with plain page loads, in a browser. During this test it runs from the site owner's own computer.</li>
-<li>Looks at what the pages show and which requests and cookies appear, with and without a click on the cookie banner's own buttons, if there is one.</li>
-<li>Reads robots.txt first and follows it (product token <code>LegalScan</code>).</li>
-<li>Keeps raw captures for at most 24 hours and derived observations for at most 7 days.</li>
-</ul>
-<h2>What it does not do</h2>
-<ul>
-<li>It does not submit forms, log in, register, search, buy, download files or solve challenges.</li>
-<li>It does not try to get around bot protection, blocks or robots.txt. If it is blocked, it stops and records "Could not check".</li>
-<li>It does not visit other sites, and it does not contact the site's owner.</li>
-<li>It does not judge or certify a site. Its output is a list of observations, "No signal found" and "Could not check" entries, not a verdict.</li>
-</ul>
-<h2>Contact and opt-out</h2>
-<p>To stop visits or ask a question, write to: <a href="https://github.com/bilalhuseyn/bilalhuseyn.github.io/issues">this repository's GitHub Issues page</a> (placeholder: the scanner's role mailbox goes here before any scan of a site that is not the founder's own).</p>
+  <h1>LegalScan scanner information</h1>
+  <p class="lede">LegalScan is an automated website checker that is still in development. This is the page its identification strings point to.
+  It is a temporary address; it will move to the product's own website once that exists, and this page will then point there.</p>
+
+  <h2>How it identifies itself</h2>
+  <ul>
+    <li>Website checks: the real Chromium browser string, followed by <code>LegalScan/0.1.0 (+https://bilalhuseyn.github.io/scanner/)</code>.
+      Nothing in the string is hidden or disguised.</li>
+    <li>Archive research: <code>LegalScan-research/0.1 (+https://bilalhuseyn.github.io/scanner/)</code>, used only when downloading public files
+      from the Common Crawl archive.</li>
+  </ul>
+
+  <h2>What it does today</h2>
+  <ul>
+    <li>It checks a website only when the site's owner asked for the check and showed control of the domain (a DNS TXT record, a meta tag or a
+      file under <code>/.well-known/</code>). These checks are currently run by an operator, by hand, from one computer.</li>
+    <li>On such a site it opens, with plain page loads in a browser, the landing page, the legal and information pages the site links to, the
+      pages the owner listed, and a few common information addresses (for example <code>/refund-policy</code>). It looks at what the pages show
+      and which requests and cookies appear, with and without a click on the cookie banner's own buttons, if there is one.</li>
+    <li>It reads <code>robots.txt</code> first and follows it. The product token is <code>LegalScan</code>.</li>
+    <li>For archive research it reads pages that Common Crawl has already archived. It sends no request to the archived websites. A page whose
+      archived copy carries a text-and-data-mining reservation, or that the archived <code>robots.txt</code> disallows, is skipped. No list of the
+      sites in the sample is published.</li>
+  </ul>
+
+  <h2>What it does not do</h2>
+  <ul>
+    <li>It does not submit forms, log in, register, search, buy, download files from a site or solve challenges.</li>
+    <li>It does not try to get around bot protection, blocks or <code>robots.txt</code>. If it is blocked, it stops and records
+      "Could not check"; it never retries from another network or location.</li>
+    <li>It does not contact the owners of the sites it looks at.</li>
+    <li>It does not judge, score or certify a site. The output of a website check is a list of observations ("Signal observed",
+      "No signal found", "Depends on your situation", "Could not check") for the owner who asked for it. It is not legal advice.</li>
+  </ul>
+
+  <h2>What it keeps</h2>
+  <ul>
+    <li>Website checks: raw captures are deleted within 24 hours; the result is kept for the owner who asked for the check. No full-page
+      screenshots are kept.</li>
+    <li>Archive research: raw archive records are deleted within 24 hours and derived observations within 7 days; only counts across many sites
+      are used, never a result about one site.</li>
+    <li>No personal data is kept, and page text is never sent to a language model.</li>
+  </ul>
+
+  <h2>Contact and opt-out</h2>
+  <p>To ask a question, or to ask that your site is not visited, open an issue at
+  <a href="https://github.com/bilalhuseyn/bilalhuseyn.github.io/issues">github.com/bilalhuseyn/bilalhuseyn.github.io/issues</a>.
+  A site whose owner asks us not to visit it will not be visited.</p>
+
+  <p class="note">Last updated: 10 November 2026.</p>
 </main>
-<footer><p><a href="/">Home</a> | <a href="/robots.txt">robots.txt</a></p></footer>
 </body>
 </html>
